@@ -21,8 +21,10 @@ class NetworkRepository(): BaseRepository() {
         return withContext(Dispatchers.IO){
 
             try {
+                val output = everythingNewsAPI.fetchCurrentNewsAsync("nigeria", "publishedAt", "en")
+                Log.d(TAG, "show me the response:${output}")
+                Result.Success(output)
 
-                Result.Success(everythingNewsAPI.fetchCurrentNewsAsync("nigeria", "publishedAt", "en"))
 
             } catch (t:Throwable){
                 Log.d(TAG, t.message.toString())

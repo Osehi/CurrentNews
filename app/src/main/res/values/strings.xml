@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">CurrentNews</string>
+    <string name="newsApp_heading">Search Latest News</string>
+    <string name="keyword">Enter a keyword</string>
+    <string name="search_label">Search</string>
+    <string name="network_error_message">No related news found</string>
 </resources>

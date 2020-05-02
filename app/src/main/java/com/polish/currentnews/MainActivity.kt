@@ -15,20 +15,20 @@ class MainActivity : AppCompatActivity() {
     val TAG = "MAINACTIVITY"
 
     lateinit var viewModel:CurrentNewsViewModel
-    lateinit var makeCall:Button
+//    lateinit var makeCall:Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        makeCall = findViewById(R.id.callButtonId)
+//        makeCall = findViewById(R.id.callButtonId)
         viewModel = ViewModelProvider(this).get(CurrentNewsViewModel::class.java)
 
-        makeCall.setOnClickListener {
-
-           viewModel.viewMyCurrentNEwsList()
-
-        }
+//        makeCall.setOnClickListener {
+//
+//           viewModel.viewMyCurrentNEwsList()
+//
+//        }
 
 
         viewModel.myNewsList.observe(this, Observer {

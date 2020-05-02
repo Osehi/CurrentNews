@@ -1,4 +1,4 @@
-package com.polish.currentnews.data
+package com.polish.currentnews.data.api
 
 import com.polish.currentnews.constants.URLConstants
 import com.polish.currentnews.model.CurrentNews
@@ -15,12 +15,13 @@ interface EverythingNewsAPI {
     @GET("v2/everything")
     suspend fun fetchCurrentNewsAsync(
         @Query("q") query:String,
-        @Query("sortBy") sortBy:String
+        @Query("sortBy") sortBy:String,
+        @Query("language") language:String
     ):Response<CurrentNews>
 
     companion object {
 
-        operator fun invoke():EverythingNewsAPI {
+        operator fun invoke(): EverythingNewsAPI {
 
              val interceptor = Interceptor { chain ->
                 val url = chain.request().url().newBuilder().addQueryParameter("apiKey", URLConstants.API_KEY).build()

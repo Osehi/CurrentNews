@@ -1,6 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    android:orientation="horizontal"
+    android:padding="@dimen/first_linear_layout_padding"
+    >
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+
+        >
+        <ImageView
+            android:id="@+id/articleImageId"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:contentDescription="@string/article_image"
+            tools:src="@drawable/newsimage"
+            android:scaleType="fitXY"
+            />
+
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_weight="1"
+
+        >
+
+
+            <TextView
+                android:id="@+id/articleTitleId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="@string/article_title"
+                android:maxLines="2"
+                android:textStyle="bold"
+                android:layout_weight="1"
+                />
+
+            <TextView
+                android:id="@+id/articleDescriptionId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="@string/article_description"
+                android:maxLength="4"
+                android:layout_weight="1"
+                />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_weight="1"
+            >
+
+            <TextView
+                android:id="@+id/pubplisheAtId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="@string/article_publishedAt"
+                android:layout_weight="1"
+                />
+
+            <TextView
+                android:id="@+id/readMoreID"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="@string/read_more"
+                />
+
+
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+
+
+
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

@@ -4,4 +4,9 @@
     <string name="keyword">Enter a keyword</string>
     <string name="search_label">Search</string>
     <string name="network_error_message">No related news found</string>
+    <string name="article_image">Article Image</string>
+    <string name="article_title">Title</string>
+    <string name="article_description">Description</string>
+    <string name="article_publishedAt">PublisheAt</string>
+    <string name="read_more">Read More</string>
 </resources>

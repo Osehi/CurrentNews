@@ -10,25 +10,27 @@
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="wrap_content"
 
         android:orientation="horizontal"
         android:padding="@dimen/first_linear_layout_padding"
         android:layout_margin="4dp"
+        android:clickable="true"
+        android:focusable="true"
         >
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-
+            android:orientation="horizontal"
+            android:layout_gravity="center_vertical"
 
             >
 
             <ImageView
                 android:id="@+id/articleImageId"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+                android:layout_width="100dp"
+                android:layout_height="120dp"
                 android:contentDescription="@string/article_image"
                 tools:src="@drawable/newsimage"
                 android:scaleType="fitXY" />
@@ -36,12 +38,12 @@
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="0dp"
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_weight="1"
 
+
+            android:layout_marginStart="6dp"
             >
 
 
@@ -52,7 +54,9 @@
                 tools:text="@string/article_title"
                 android:maxLines="2"
                 android:textStyle="bold"
-                android:layout_weight="1"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
                 android:text="@{Article.title}"
                 />
 
@@ -61,39 +65,31 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 tools:text="@string/article_description"
-                android:maxLines="4"
-                android:layout_weight="1"
+                android:maxLines="3"
+                android:layout_below="@id/articleTitleId"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentStart="true"
                 android:text="@{Article.description}"
+                android:layout_marginTop="2dp"
                 />
 
-            <androidx.appcompat.widget.LinearLayoutCompat
+
+            <TextView
+                android:id="@+id/pubplisheAtId"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_weight="1">
-
-                <TextView
-                    android:id="@+id/pubplisheAtId"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    tools:text="@string/article_publishedAt"
-                    android:layout_weight="1"
-                    android:text="@{Article.publishedAt}"
-                    />
-
-                <TextView
-                    android:id="@+id/readMoreID"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    tools:text="@string/read_more"
-
-                    />
+                android:layout_below="@id/articleDescriptionId"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:text="@{Article.publishedAt}"
+                android:layout_alignParentBottom="true"
+                tools:text="@string/article_publishedAt"
+                android:layout_marginTop="2dp"
+                android:textColor="@color/colorAccent"
+                />
 
 
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-
-        </androidx.appcompat.widget.LinearLayoutCompat>
+        </RelativeLayout>
 
 
     </androidx.appcompat.widget.LinearLayoutCompat>

@@ -7,9 +7,11 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.polish.currentnews.databinding.ListItemNewsarticleBinding
 import com.polish.currentnews.model.Article
+import com.polish.currentnews.ui.OnItemOpenWebListener
 import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.list_item_newsarticle.view.*
 
-class ArticleAdapter():ListAdapter<Article, ArticleAdapter.ArticleViewHolder>(DiffCallback) {
+class ArticleAdapter(val onClickListener:OnClickListener, val onItemOpenWebListener:OnItemOpenWebListener):ListAdapter<Article, ArticleAdapter.ArticleViewHolder>(DiffCallback) {
 
     class ArticleViewHolder(var binding:ListItemNewsarticleBinding):RecyclerView.ViewHolder(binding.root) {
 
@@ -44,7 +46,22 @@ class ArticleAdapter():ListAdapter<Article, ArticleAdapter.ArticleViewHolder>(Di
     override fun onBindViewHolder(holder: ArticleViewHolder, position: Int) {
         val article = getItem(position)
 
+        holder.itemView.setOnClickListener {
+            onClickListener.onClick(article)
+        }
+
+        holder.itemView.pubplisheAtId.setOnClickListener {
+            onItemOpenWebListener.onItemOpenWeb(article)
+        }
+
+
         holder.bind(article)
+
+    }
+
+    class OnClickListener(val clickListener:(article:Article) -> Unit){
+
+       fun onClick(article: Article) = clickListener(article)
 
     }
 

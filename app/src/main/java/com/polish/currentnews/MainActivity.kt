@@ -1,5 +1,7 @@
 package com.polish.currentnews
 
+import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -7,6 +9,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.polish.currentnews.adapter.ArticleAdapter
 import com.polish.currentnews.model.Article
 import com.polish.currentnews.ui.CurrentNewsViewModel
+import com.polish.currentnews.ui.OnItemOpenWebListener
 import com.polish.currentnews.utils.Result
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -52,7 +56,19 @@ class MainActivity : AppCompatActivity() {
         val recyclerView:RecyclerView = findViewById(R.id.myRecyclerViewId)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        adapter = ArticleAdapter()
+        adapter = ArticleAdapter(ArticleAdapter.OnClickListener {
+
+        }, object :OnItemOpenWebListener {
+            override fun onItemOpenWeb(article: Article) {
+                val webpage:Uri = Uri.parse(article.url)
+                val intent = Intent(Intent.ACTION_VIEW, webpage)
+                if(intent.resolveActivity(packageManager) != null){
+                    startActivity(intent)
+                }
+            }
+        }
+
+            )
         recyclerView.adapter = adapter
 
 
@@ -68,6 +84,9 @@ class MainActivity : AppCompatActivity() {
                         Log.d(TAG, "these are my list: ${outcome}")
                     }
                     myRecyclerViewId.visibility = View.VISIBLE
+                    if (networkErrorMsgId.isVisible){
+                        networkErrorMsgId.visibility = View.INVISIBLE
+                    }
                 }
                 is Result.Error -> {
                     progressBarId.visibility = View.GONE

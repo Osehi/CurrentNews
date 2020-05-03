@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.polish.currentnews.databinding.ListItemNewsarticleBinding
 import com.polish.currentnews.model.Article
+import com.squareup.picasso.Picasso
 
 class ArticleAdapter():ListAdapter<Article, ArticleAdapter.ArticleViewHolder>(DiffCallback) {
 
@@ -14,6 +15,13 @@ class ArticleAdapter():ListAdapter<Article, ArticleAdapter.ArticleViewHolder>(Di
 
         fun bind(article:Article){
             binding.article = article
+
+            // set image on the recyclerview
+            Picasso.get()
+                .load(article.urlToImage)
+                .into(binding.articleImageId)
+
+
             binding.executePendingBindings()
         }
 

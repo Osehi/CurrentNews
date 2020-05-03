@@ -10,15 +10,18 @@
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="100dp"
 
         android:orientation="horizontal"
-        android:padding="@dimen/first_linear_layout_padding">
+        android:padding="@dimen/first_linear_layout_padding"
+        android:layout_margin="4dp"
+        >
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+
 
             >
 
@@ -44,20 +47,24 @@
 
             <TextView
                 android:id="@+id/articleTitleId"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 tools:text="@string/article_title"
                 android:maxLines="2"
                 android:textStyle="bold"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:text="@{Article.title}"
+                />
 
             <TextView
                 android:id="@+id/articleDescriptionId"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 tools:text="@string/article_description"
-                android:maxLength="4"
-                android:layout_weight="1" />
+                android:maxLines="4"
+                android:layout_weight="1"
+                android:text="@{Article.description}"
+                />
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
@@ -70,13 +77,17 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     tools:text="@string/article_publishedAt"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:text="@{Article.publishedAt}"
+                    />
 
                 <TextView
                     android:id="@+id/readMoreID"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    tools:text="@string/read_more" />
+                    tools:text="@string/read_more"
+
+                    />
 
 
             </androidx.appcompat.widget.LinearLayoutCompat>

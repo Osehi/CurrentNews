@@ -90,6 +90,9 @@ class MainActivity : AppCompatActivity() {
                 }
                 is Result.Error -> {
                     progressBarId.visibility = View.GONE
+                    if (myRecyclerViewId.isVisible){
+                        myRecyclerViewId.visibility = View.GONE
+                    }
                     networkErrorMsgId.visibility = View.VISIBLE
                     Toast.makeText(this, "${it.exception.message}", Toast.LENGTH_LONG).show()
                 }

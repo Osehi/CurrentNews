@@ -41,8 +41,6 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-
-
             android:layout_marginStart="6dp"
             >
 
@@ -81,9 +79,9 @@
                 android:layout_below="@id/articleDescriptionId"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentEnd="true"
-                android:text="@{Article.publishedAt}"
+                android:text="@string/read_more"
                 android:layout_alignParentBottom="true"
-                tools:text="@string/article_publishedAt"
+                tools:text="@string/read_more"
                 android:layout_marginTop="2dp"
                 android:textColor="@color/colorAccent"
                 />

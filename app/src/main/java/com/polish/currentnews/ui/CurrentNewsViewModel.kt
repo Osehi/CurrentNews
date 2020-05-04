@@ -23,10 +23,10 @@ class CurrentNewsViewModel: ViewModel() {
     get() = _myNewsList
 
 
-    fun viewMyCurrentNEwsList():LiveData<Result<Response<CurrentNews>>>{
+    fun viewMyCurrentNEwsList(query:String):LiveData<Result<Response<CurrentNews>>>{
 
         viewModelScope.launch {
-            _myNewsList.value = repository.getAllNews()
+            _myNewsList.value = repository.getAllNews(query)
         }
         return _myNewsList
 

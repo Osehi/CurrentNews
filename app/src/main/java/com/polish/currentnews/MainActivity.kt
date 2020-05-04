@@ -1,11 +1,13 @@
 package com.polish.currentnews
 
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -45,11 +47,32 @@ class MainActivity : AppCompatActivity() {
 //
 //        }
 
+        // initialize the editText
+        inputKeyword = findViewById(R.id.inputFromUserId)
+//        val keyword = inputKeyword.text.toString()
+
         // initialize the search button
         searchButton = findViewById(R.id.searchButtonId)
 
+
+
         searchButton.setOnClickListener {
-            viewModel.viewMyCurrentNEwsList()
+
+            var keyword:String = " "
+
+            when {
+                inputKeyword.text.trim().isEmpty() -> {
+                   inputKeyword.error = "Keyword cannot be empty"
+                }
+                else -> {
+                     keyword = inputKeyword.text.trim().toString()
+                }
+            }
+
+
+            viewModel.viewMyCurrentNEwsList(keyword)
+            inputKeyword.setText(" ")
+            closeKeyboard()
         }
 
         // initialize the recyclerview
@@ -94,7 +117,8 @@ class MainActivity : AppCompatActivity() {
                         myRecyclerViewId.visibility = View.GONE
                     }
                     networkErrorMsgId.visibility = View.VISIBLE
-                    Toast.makeText(this, "${it.exception.message}", Toast.LENGTH_LONG).show()
+//                    Toast.makeText(this, "${it.exception.message}", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, "No network connection", Toast.LENGTH_LONG).show()
                 }
 
             }
@@ -103,6 +127,20 @@ class MainActivity : AppCompatActivity() {
 
 
     }
+
+
+   private fun closeKeyboard(){
+
+       val view = this.currentFocus
+       if(view != null){
+            val hideMe = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+           hideMe.hideSoftInputFromWindow(view.windowToken, 0)
+
+       }
+
+    }
+
+
 
 //
 //    private fun renderList(article: Article){

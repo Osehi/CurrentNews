@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="Article"
+            type="com.polish.currentnews.model.Article" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/todaysDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="@string/article_publishedAt"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:textStyle="bold"
+            android:padding="4dp"
+            android:layout_marginStart="4dp"
+            android:text="@{Article.publishedAt}"
+            />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/baseInfoCarrier"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_below="@id/todaysDate"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            app:cardCornerRadius="8dp"
+            android:padding="4dp"
+            android:layout_margin="8dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/pictureMessage"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:contentDescription="@string/content_description"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentTop="true"
+                    tools:src="@drawable/newsimage"
+                    android:scaleType="fitXY" />
+
+                <TextView
+                    android:id="@+id/reference"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/pictureMessage"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentStart="true"
+                    android:textStyle="bold"
+                    tools:text="@string/reference_title"
+                    android:padding="4dp"
+                    android:layout_marginStart="4dp"
+                    android:maxLines="2"
+                    android:text="@{Article.title}"
+                    />
+
+                <TextView
+                    android:id="@+id/quoteScripture"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/reference"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentStart="true"
+                    tools:text="@string/quote_new"
+                    android:layout_marginTop="4dp"
+                    android:maxLines="3"
+                    android:padding="4dp"
+                    android:layout_marginStart="4dp"
+                    android:text="@{Article.description}"
+                    />
+
+                <TextView
+                    android:id="@+id/readMore"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/read_more"
+                    android:layout_below="@id/quoteScripture"
+                    android:layout_marginTop="8dp"
+                    android:layout_alignParentStart="true"
+                    android:textColor="@color/colorAccent"
+                    android:layout_marginStart="4dp"
+                    android:padding="4dp"
+                    />
+
+                <ImageView
+                    android:id="@+id/directionArrow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/cd_direction"
+                    android:src="@drawable/ic_read_more_arrow"
+                    android:layout_below="@id/quoteScripture"
+                    android:layout_toEndOf="@id/readMore"
+                    android:layout_marginTop="8dp"
+                    android:padding="4dp"
+
+                    />
+
+
+
+            </RelativeLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+    </RelativeLayout>
+</layout>

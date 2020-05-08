@@ -10,4 +10,9 @@
     <string name="article_publishedAt">PublisheAt</string>
     <string name="read_more">Read More</string>
     <string name="autofill_hint">Just one keyword</string>
+    <string name="content_description">Picture Image</string>
+    <string name="reference_title">Tile</string>
+    <string name="quote_new">Description</string>
+    <string name="cd_direction">Direction</string>
+
 </resources>

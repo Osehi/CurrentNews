@@ -17,6 +17,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.polish.currentnews.adapter.ArticleAdapter
+import com.polish.currentnews.adapter.ArticleCardAdapter
 import com.polish.currentnews.model.Article
 import com.polish.currentnews.ui.CurrentNewsViewModel
 import com.polish.currentnews.ui.OnItemOpenWebListener
@@ -30,6 +31,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var searchButton: Button
     lateinit var adapter:ArticleAdapter
     lateinit var inputKeyword:EditText
+    lateinit var mAdapter: ArticleCardAdapter
 
     lateinit var viewModel:CurrentNewsViewModel
 //    lateinit var makeCall:Button
@@ -79,20 +81,38 @@ class MainActivity : AppCompatActivity() {
         val recyclerView:RecyclerView = findViewById(R.id.myRecyclerViewId)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        adapter = ArticleAdapter(ArticleAdapter.OnClickListener {
+//        adapter = ArticleAdapter(ArticleAdapter.OnClickListener {
+//
+//        }, object :OnItemOpenWebListener {
+//            override fun onItemOpenWeb(article: Article) {
+//                val webpage:Uri = Uri.parse(article.url)
+//                val intent = Intent(Intent.ACTION_VIEW, webpage)
+//                if(intent.resolveActivity(packageManager) != null){
+//                    startActivity(intent)
+//                }
+//            }
+//        }
+//
+//            )
+//        recyclerView.adapter = adapter
 
-        }, object :OnItemOpenWebListener {
-            override fun onItemOpenWeb(article: Article) {
-                val webpage:Uri = Uri.parse(article.url)
-                val intent = Intent(Intent.ACTION_VIEW, webpage)
-                if(intent.resolveActivity(packageManager) != null){
-                    startActivity(intent)
+        // new adapter
+        mAdapter = ArticleCardAdapter(
+
+            ArticleCardAdapter.OnClickListener {},
+
+            object :OnItemOpenWebListener {
+                override fun onItemOpenWeb(article: Article) {
+                    val webpage:Uri = Uri.parse(article.url)
+                    val intent = Intent(Intent.ACTION_VIEW, webpage)
+                    if (intent.resolveActivity(packageManager) != null){
+                        startActivity(intent)
+                    }
                 }
-            }
-        }
 
-            )
-        recyclerView.adapter = adapter
+            }
+        )
+        recyclerView.adapter = mAdapter
 
 
         viewModel.myNewsList.observe(this, Observer {
@@ -103,7 +123,8 @@ class MainActivity : AppCompatActivity() {
                     progressBarId.visibility = View.GONE
                     it.data?.let { myResponse ->
                         val outcome = myResponse.body()?.articles
-                        adapter.submitList(outcome)
+//                        adapter.submitList(outcome)
+                        mAdapter.submitList(outcome)
                         Log.d(TAG, "these are my list: ${outcome}")
                     }
                     myRecyclerViewId.visibility = View.VISIBLE

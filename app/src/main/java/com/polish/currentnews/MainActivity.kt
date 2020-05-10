@@ -20,6 +20,7 @@ import com.polish.currentnews.adapter.ArticleAdapter
 import com.polish.currentnews.adapter.ArticleCardAdapter
 import com.polish.currentnews.model.Article
 import com.polish.currentnews.ui.CurrentNewsViewModel
+import com.polish.currentnews.ui.DetailActivity
 import com.polish.currentnews.ui.OnItemOpenWebListener
 import com.polish.currentnews.utils.Result
 import kotlinx.android.synthetic.main.activity_main.*
@@ -99,7 +100,11 @@ class MainActivity : AppCompatActivity() {
         // new adapter
         mAdapter = ArticleCardAdapter(
 
-            ArticleCardAdapter.OnClickListener {},
+            ArticleCardAdapter.OnClickListener { article ->
+                val intent = Intent(this, DetailActivity::class.java)
+                intent.putExtra(DetailActivity.NEWS_ARTICLE, article)
+                startActivity(intent)
+            },
 
             object :OnItemOpenWebListener {
                 override fun onItemOpenWeb(article: Article) {

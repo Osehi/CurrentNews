@@ -14,5 +14,7 @@
     <string name="reference_title">Tile</string>
     <string name="quote_new">Description</string>
     <string name="cd_direction">Direction</string>
+    <string name="cd_detail_picture_message">Detailed Picture Message</string>
+    <string name="news_content">content</string>
 
 </resources>

@@ -6,7 +6,7 @@ apply plugin: "kotlin-kapt"
 
 android {
 
-    lintOptions{
+    lintOptions {
         checkReleaseBuilds false
     }
 
@@ -100,8 +100,6 @@ dependencies {
 
     // picasso
     implementation 'com.squareup.picasso:picasso:2.71828'
-
-
 
 
     testImplementation 'junit:junit:4.13'

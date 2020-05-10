@@ -51,7 +51,7 @@
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentTop="true"
                     tools:src="@drawable/newsimage"
-                    android:scaleType="centerCrop" />
+                    android:scaleType="fitXY" />
 
                 <TextView
                     android:id="@+id/reference"

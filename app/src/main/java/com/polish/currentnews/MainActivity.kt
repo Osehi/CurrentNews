@@ -62,6 +62,8 @@ class MainActivity : AppCompatActivity() {
 
         searchButton.setOnClickListener {
 
+            progressBarId.visibility = View.VISIBLE
+
             var keyword:String = " "
 
             when {

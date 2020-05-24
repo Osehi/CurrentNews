@@ -51,9 +51,9 @@ class ArticleCardAdapter(val onClickListener:OnClickListener, val onItemOpenWebL
             onClickListener.onClick(article)
         }
 
-        holder.itemView.readMore.setOnClickListener {
-            onItemOpenWebListener.onItemOpenWeb(article)
-        }
+//        holder.itemView.readMore.setOnClickListener {
+//            onItemOpenWebListener.onItemOpenWeb(article)
+//        }
 
         holder.bind(article)
 

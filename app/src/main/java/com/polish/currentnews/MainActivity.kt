@@ -1,7 +1,9 @@
 package com.polish.currentnews
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -25,16 +27,22 @@ import com.polish.currentnews.ui.LaunchWeb
 import com.polish.currentnews.ui.OnItemOpenWebListener
 import com.polish.currentnews.utils.Result
 import kotlinx.android.synthetic.main.activity_main.*
-
+const val SHARED_PREFERENCE = "sharePrefenece"
+const val INPUT_KEYWORD = "keywordPassed"
 class MainActivity : AppCompatActivity() {
 
+//    private val lastVisibleItemPosition:Int
+//        get() = linearLayoutManager.findLastVisibleItemPosition()
+
     val TAG = "MAINACTIVITY"
+
+     var keyword:String = " "
+        var enterQuery:String? = null
 
     lateinit var searchButton: Button
     lateinit var adapter:ArticleAdapter
     lateinit var inputKeyword:EditText
     lateinit var mAdapter: ArticleCardAdapter
-
     lateinit var viewModel:CurrentNewsViewModel
 //    lateinit var makeCall:Button
 
@@ -64,7 +72,7 @@ class MainActivity : AppCompatActivity() {
 
             progressBarId.visibility = View.VISIBLE
 
-            var keyword:String = " "
+//             keyword = " "
 
             when {
                 inputKeyword.text.trim().isEmpty() -> {
@@ -75,11 +83,18 @@ class MainActivity : AppCompatActivity() {
                 }
             }
 
+            saveKeyword()
+
 
             viewModel.viewMyCurrentNEwsList(keyword)
+//            enterQuery = keyword
             inputKeyword.setText(" ")
             closeKeyboard()
+            Log.d(TAG, "at the search-button:$keyword")
+//            Log.d(TAG, "at the sarch bar phase_2:$enterQuery")
         }
+//        Log.d(TAG, "outside the search button:$keyword")
+//        Log.d(TAG,"outside the search button:$enterQuery")
 
         // initialize the recyclerview
         val recyclerView:RecyclerView = findViewById(R.id.myRecyclerViewId)
@@ -160,6 +175,9 @@ class MainActivity : AppCompatActivity() {
 
         })
 
+        setScrollListener()
+        Log.d(TAG,"inside this keyword is:$keyword")
+
 
     }
 
@@ -173,6 +191,45 @@ class MainActivity : AppCompatActivity() {
 
        }
 
+    }
+
+
+    private fun setScrollListener(){
+
+        val insert = loadSavedData()
+        Log.d("CHECKING_MY_SVD_PREF", "checking inside saved pref value:$insert")
+
+
+        myRecyclerViewId.addOnScrollListener(object: RecyclerView.OnScrollListener(){
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+                if(!recyclerView.canScrollVertically(1) && newState == RecyclerView.SCROLL_STATE_IDLE){
+                    if (viewModel.loadingNewsArticle.value == null
+                        || viewModel.loadingNewsArticle.value == false
+                    ){
+                        viewModel.getMoreCurrentNewsLists(insert!!)
+                    }
+                }
+            }
+        })
+
+
+    }
+
+
+    private fun saveKeyword(){
+        val pref = getSharedPreferences(SHARED_PREFERENCE, Context.MODE_PRIVATE)
+        val editor = pref.edit()
+        editor.putString(INPUT_KEYWORD, keyword)
+        Log.d("MY_PREFERENCE_FUNCTION", "is there a value in keyword capture:${keyword}")
+        editor.apply()
+    }
+
+
+    private fun loadSavedData():String?{
+        val pref = getSharedPreferences(SHARED_PREFERENCE, Context.MODE_PRIVATE)
+        enterQuery = pref.getString(INPUT_KEYWORD, null)
+        return enterQuery
     }
 
 

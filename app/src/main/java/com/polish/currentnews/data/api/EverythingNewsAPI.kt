@@ -16,7 +16,8 @@ interface EverythingNewsAPI {
     suspend fun fetchCurrentNewsAsync(
         @Query("q") query:String,
         @Query("sortBy") sortBy:String,
-        @Query("language") language:String
+        @Query("language") language:String,
+        @Query("page") page:Int
     ):Response<CurrentNews>
 
     companion object {

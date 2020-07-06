@@ -33,7 +33,7 @@
                 android:layout_height="120dp"
                 android:contentDescription="@string/article_image"
                 tools:src="@drawable/newsimage"
-                android:scaleType="fitXY" />
+                android:scaleType="centerCrop" />
 
 
         </androidx.appcompat.widget.LinearLayoutCompat>

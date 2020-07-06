@@ -52,7 +52,7 @@
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentTop="true"
                     tools:src="@drawable/newsimage"
-                    android:scaleType="fitXY" />
+                    android:scaleType="centerCrop" />
 
                 <TextView
                     android:id="@+id/reference"

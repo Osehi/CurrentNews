@@ -16,12 +16,12 @@ class NetworkRepository(): BaseRepository() {
 
     val TAG = "NETWORK REPOSITORY"
 
-    suspend fun getAllNews(query:String):Result<Response<CurrentNews>> {
+    suspend fun getAllNews(query:String, page:Int):Result<Response<CurrentNews>> {
 
         return withContext(Dispatchers.IO){
 
             try {
-                val output = everythingNewsAPI.fetchCurrentNewsAsync(query, "publishedAt", "en")
+                val output = everythingNewsAPI.fetchCurrentNewsAsync(query, "publishedAt", "en", page)
                 Log.d(TAG, "show me the response:${output}")
                 Result.Success(output)
 
